@@ -2,11 +2,19 @@ from AbstractCommand import AbstractCommand
 
 class Console:
 
-    # Input all Used commands here #
+    # ALL COMMANDS TO OPERATE ON ARE TO BE PUT HERE #
     CMDS = ()
 
-    def __init__(self, *args):
-        pass
+    # File to operate on #
+    file = None
+    # Appending or Overwriting Signal#
+    appendMode = None
+
+    def start(self):
+        print(self.CMDS)
+        print(self.file)
+        while True:
+            pass
 
     def mainRoutine(self):
         pass
