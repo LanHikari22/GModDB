@@ -66,7 +66,6 @@ class HelpCmd(AbstractCommand):
         <command> [option1 | option2 | option3] requiredArg
     """
     def getSynp(self):
-        # todo verify
         synp = "NAME"
         synp += "\n\t" + self.getBrief()
         synp += "\nSYNPOSIS"
@@ -90,7 +89,6 @@ class HelpCmd(AbstractCommand):
     <Describe command in details here>
     """
     def getDoc(self):
-        # todo verify
         doc = self.getSynp()
         doc += "\nARGUMENTS"
         doc += """

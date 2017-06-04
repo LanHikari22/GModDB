@@ -1,5 +1,7 @@
 from AbstractCommand import AbstractCommand
 from Exceptions import *
+
+# todo change
 class ExitCmd(AbstractCommand):
 
 
@@ -7,6 +9,7 @@ class ExitCmd(AbstractCommand):
     This method is called when the user executes the command
     """
     def exec(self, *args):
+        # todo change
         if args:
             print("Dunno what additional commands you gave me, but i'll just exit")
         print("Exiting program... Have a nice day!")
@@ -16,6 +19,7 @@ class ExitCmd(AbstractCommand):
     Returns the name of the command that would be identified with in the console.
     """
     def getName(self):
+        # todo change
         return "exit"
 
     """

@@ -1,3 +1,15 @@
+"""
+To modify this program, please head to the ConsoleCommmands module for instructions.
+Things that you may modify in this module:
+    - Initial print in start()
+    - environmentPrompt()
+Minimum files needed for the Console API:
+    - Console.py
+    - ConsoleCommands.py
+    - Exceptions.py
+    - ExitCmd.py
+    - HelpCmd.py
+"""
 from AbstractCommand import AbstractCommand
 import ConsoleCommands
 
@@ -15,7 +27,6 @@ class Console:
     Initiates the console environment
     """
     def start(self):
-        # todo Status: in progress
         print('Welcome to the Game Modding Database! Written by yours truly, Lan! Enter "help" to display all commands')
         while True:
             userStr = input(self.environmentPrompt() + ' ')

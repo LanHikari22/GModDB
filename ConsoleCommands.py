@@ -3,7 +3,10 @@ This module's purpose is to construct the commands used in the Console module.
 Usage:
     1) Import all necessary modules
     2) Modify the constructCommands() method and input the command you wish to use.
-       All commands MUST be insered before the HelpCmd command, since it depends on all commands being present.
+       All commands MUST be inserted before the HelpCmd command, since it depends on all commands being present.
+Note:
+    You may copy ExitCmd.py into a new command subclass of AbstractCommand if you wish. It has convenient todos on
+    each method to change, as well as the class name. This might help if you're lazy
 """
 
 # Import all necessary Modules here
