@@ -10,8 +10,8 @@ Minimum files needed for the Console API:
     - ExitCmd.py
     - HelpCmd.py
 """
-from AbstractCommand import AbstractCommand
-import ConsoleCommands
+from Console_API import ConsoleCommands
+
 
 class Console:
 
@@ -58,6 +58,10 @@ class Console:
     def environmentPrompt(self):
         return "GMDB@%s>" % (self.file.name)
 
+    """
+    Parses space delimited elements from a string to a list.
+    If there is text between quotes '"', all of that text is captured as one element
+    """
     def parse(self, s):
         args = []
         temp = ""

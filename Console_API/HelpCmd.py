@@ -1,5 +1,8 @@
-from AbstractCommand import AbstractCommand
-from Exceptions import *
+from Console_API.AbstractCommand import AbstractCommand
+
+from Console_API.Exceptions import *
+
+
 class HelpCmd(AbstractCommand):
 
     # Tuple of commands to show the documentation of #
@@ -27,16 +30,16 @@ class HelpCmd(AbstractCommand):
                 if args[1] == command.getName():
                     commandAvailable = True
                     print(command.getDoc())
-                if not commandAvailable:
-                    print("Command %s does not exist" % (args[1]))
+            if not commandAvailable:
+                print("Command %s does not exist" % (args[1]))
         elif len(args) > 0:
             commandAvailable = False
             for command in self.commands:
                 if args[0] == command.getName():
                     commandAvailable = True
                     print(command.getSynp())
-                if not commandAvailable:
-                    print("Command %s does not exist" % (args[0]))
+            if not commandAvailable:
+                print("Command %s does not exist" % (args[0]))
         else:
             print("Available Commands:")
             for command in self.commands:

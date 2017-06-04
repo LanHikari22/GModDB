@@ -10,10 +10,10 @@ Note:
 """
 
 # Import all necessary Modules here
-from AbstractCommand import AbstractCommand
-from Exceptions import *
-from ExitCmd import ExitCmd
-from HelpCmd import HelpCmd
+from Console_API.AbstractCommand import AbstractCommand
+from Console_API.Exceptions import *
+from Console_API.ExitCmd import ExitCmd
+from Console_API.HelpCmd import HelpCmd
 
 """
 Verifies that all commands extend AbstractCommand

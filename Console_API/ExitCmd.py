@@ -1,5 +1,5 @@
-from AbstractCommand import AbstractCommand
-from Exceptions import *
+from Console_API.AbstractCommand import AbstractCommand
+
 
 # todo change
 class ExitCmd(AbstractCommand):
