@@ -1,7 +1,7 @@
 import sys
 
-sys.path.insert(0, '/home/lan/Projects/XML_Parser/')
-sys.path.insert(0, '/home/lan/Projects/XML_Writer/')
+# sys.path.insert(0, '/home/lan/Projects/XML_Parser/')
+# sys.path.insert(0, '/home/lan/Projects/XML_Writer/')
 from Console_API.Console import Console
 
 # Console Object to operate on #
