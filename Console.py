@@ -1,25 +1,64 @@
 from AbstractCommand import AbstractCommand
+import ConsoleCommands
 
 class Console:
 
-    # ALL COMMANDS TO OPERATE ON ARE TO BE PUT HERE #
-    CMDS = ()
+    # All Commands used within the console. Must extend AbstractCommand #
+    commands = ConsoleCommands.commands
 
     # File to operate on #
     file = None
     # Appending or Overwriting Signal#
     appendMode = None
 
+    """
+    Initiates the console environment
+    """
     def start(self):
-        print(self.CMDS)
-        print(self.file)
+        # todo Status: in progress
+        print('Welcome to the Game Modding Database! Written by yours truly, Lan! Enter "help" to display all commands')
         while True:
-            pass
+            userStr = input(self.environmentPrompt() + ' ')
+            argv = self.parse(userStr)
+            self.exec(*argv)
 
-    def mainRoutine(self):
-        pass
+    """"
+    Attempts to execute a command from arguments passed from the user
+    """
+    def exec(self, *argv):
+        # We better have any arguments to execute them
+        if argv:
+            # Create the appropriate command based on args[0]
+            cmd = None
+            name = argv[0]
+            for command in self.commands:
+                if name == command.getName():
+                    cmd = command
+            if not cmd:
+                print("Command %s does not exist" % name)
+            else:
+                # Execute the specific command's action, and pass it the rest of the args
+                cmd.exec(*argv[1:])
 
-    def exec(self, cmd):
-        if not issubclass(cmd,AbstractCommand):
-            raise TypeError("Invalid command parameter. It must be of type Command")
-        pass
+
+    """
+    Modify this to change the applications user prompt text.
+    """
+    def environmentPrompt(self):
+        return "GMDB@%s>" % (self.file.name)
+
+    def parse(self, s):
+        args = []
+        temp = ""
+        openQuotes = False
+        for c in s.strip():
+            if c.isspace() and not openQuotes:
+                args.append(temp)
+                temp = ""
+            elif c != '"':
+                temp += c
+            elif c == '"':
+                openQuotes = not openQuotes
+        if temp:
+            args.append(temp)
+        return args

@@ -1,24 +1,22 @@
+from AbstractCommand import AbstractCommand
+from Exceptions import *
+class ExitCmd(AbstractCommand):
 
-"""
-This class represents an interface to what a console command is expected to have.
-All classes extending this must override ALL METHODS to return appropriate data
-"""
-class AbstractCommand:
 
     """
     This method is called when the user executes the command
     """
     def exec(self, *args):
-        print("Dude, what you want???")
-        print(args)
-        print("Yeah, so?? What I do with these?")
-
+        if args:
+            print("Dunno what additional commands you gave me, but i'll just exit")
+        print("Exiting program... Have a nice day!")
+        exit('')
 
     """
     Returns the name of the command that would be identified with in the console.
     """
     def getName(self):
-        return "abstract"
+        return "exit"
 
     """
     Returns a very brief summary of the command
@@ -26,7 +24,8 @@ class AbstractCommand:
     <command> - <brief Description>
     """
     def getBrief(self):
-        return "Abstract - existing in thought or as an idea but not having a physical or concrete existence."
+        # todo change
+        return "%s - Exits the program" % self.getName()
 
     """
     returns syntactical documentation about the command
@@ -38,7 +37,13 @@ class AbstractCommand:
         <command> [option1 | option2 | option3] requiredArg
     """
     def getSynp(self):
-        return "I'm an abstract object... What is reality?"
+        # todo change
+        synp = "NAME"
+        synp += "\n\t" + self.getBrief()
+        synp += "\nSYNPOSIS"
+        synp += """
+    %s""" % (self.getName())
+        return synp
 
     """
     Returns full documentation of the command.
@@ -55,7 +60,13 @@ class AbstractCommand:
     <Describe command in details here>
     """
     def getDoc(self):
-        return "I'd write a book about me, but who would buy that? You will... right?"
-
-
-
+        # todo change
+        doc = self.getSynp()
+        doc += "\nARGUMENTS"
+        doc += """
+    No args: Exits the program
+    args: Nothing, really."""
+        doc += "\nDESCRIPTION"
+        doc += """
+    The %s Command Exits the program""" % self.getName()
+        return doc

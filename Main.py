@@ -46,17 +46,22 @@ the user will be prompted within the console program to input a file path, or ju
 Handles configuring the Console operating file.
 """
 def handleFile(filename):
-    # todo handle
-    # todo verbose
-    pass
+    mode = "a+" if console.appendMode else "w+"
+    file = open(filename,mode)
+    console.file = file
+    if isVerbose:
+        mode = "append" if console.appendMode else "overwrite"
+        print('console is now operating on "' + filename + '"')
+
 
 """
-
+Handles configuring the Console file operating mode
 """
 def handleMode(append):
-    # todo handle
-    # todo verbose
-    pass
+    console.appendMode = append
+    if isVerbose:
+        mode = "append" if append else "overwrite"
+        print("Console is set on %s mode" % (mode))
 
 '''
 Configures the Console based on passed arguments.
@@ -75,32 +80,40 @@ If no file is selected, and the append/overwrite mode is not set, the program wo
 the user will be prompted within the console program to input a file path, or just operate on a default file.
 '''
 def configureConsole(*args):
+    # Verbose argument checked first to respond to other commands verbosely
+    global isVerbose
     if "--verbose" in args or "-v" in args:
         isVerbose = True
-    # else:
-    #     isVerbose = False
-    for i in range(len(args)):
-        if isVerbose:
-            print("[%u] %s" % (i, args[i]))
-        if args[i] == "--help" or args[i] == "-h":
-            handleHelp()
-        if args[i] == "--file" or args[i] == "-f":
-            if i+1 < len(args):
-                handleFile(args[i+1])
-            else:
-                print("No filename passed. Please pass the filename to operate on")
-        if args[i] == "--overwrite" or args[i] == "-o":
-            handleMode(append=False)
-        if args[i] == "--append" or args[i] == "-a":
-            handleMode(append=True)
-
-    pass
+    else:
+        isVerbose = False
+    # If help is executed, the program exits
+    if "--help" in args or "-h" in args:
+        handleHelp()
+    # Handle file mode -- Default: append
+    if "--overwrite" in args or "-o" in args:
+        handleMode(append=False)
+    elif "--append" in args or "-a" in args:
+        handleMode(append=True)
+    else:
+        handleMode(append=True)
+    # Handles passed file -- Default: "default.xml"
+    try:
+        if "--file" in args:
+            handleFile(args[args.index("--file")+1])
+        elif "-f" in args:
+            handleFile(args[args.index("-f")+1])
+        else:
+            handleFile("default.xml")
+    except ValueError:
+        print("No filename passed. Please pass the filename to operate on")
 
 if __name__ == '__main__':
-    staticfunction()
     try:
         if len(sys.argv) > 1:
             configureConsole(*sys.argv[1:])
+        else: # Setting defaults
+            configureConsole()
+        console.start()
     except IOError as e   :
         sys.stderr.write(str(e))
     except BaseException as e:
