@@ -1,13 +1,8 @@
 import sys
-import Main
+
 sys.path.insert(0, '/home/lan/Projects/XML_Parser/')
 sys.path.insert(0, '/home/lan/Projects/XML_Writer/')
-from XMLWriter import *
-from AbstractXMLWriterHandler import *
-from XMLParser import *
-from AbstractXMLParserHandler import *
-from XMLTag import XMLTag
-from Console import Console
+from Console_API.Console import Console
 
 # Console Object to operate on #
 console = Console()
