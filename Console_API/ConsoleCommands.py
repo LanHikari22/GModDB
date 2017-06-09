@@ -1,5 +1,6 @@
 """
 This module's purpose is to construct the commands used in the Console module.
+The ConsoleGeneric module can be used to establish an operation ground between commands
 Usage:
     1) Import all necessary modules
     2) Modify the constructCommands() method and input the command you wish to use.
@@ -11,9 +12,12 @@ Note:
 
 # Import all necessary Modules here
 from Console_API.AbstractCommand import AbstractCommand
+from Console_API.ConsoleGeneric import *
 from Console_API.Exceptions import *
 from Console_API.ExitCmd import ExitCmd
 from Console_API.HelpCmd import HelpCmd
+
+
 
 """
 Verifies that all commands extend AbstractCommand
